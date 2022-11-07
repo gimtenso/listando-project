@@ -8,9 +8,9 @@ app_name = "main"
 
 
 urlpatterns = [
-    path("", views.homepage, name="homepage"),
-    path("register", views.register_request, name="register"),
-    path("login", views.login_request, name="login"),
-    path("logout", views.logout_request, name= "logout"),
-    path("sucesso", views.homepage, name="sucesso")
+    path("https://listando.netlify.app/", views.homepage, name="homepage"),
+    path("https://listando.netlify.app/register", views.register_request, name="register"),
+    path("https://listando.netlify.app/login", views.login_request, name="login"),
+    path("https://listando.netlify.app/logout", views.logout_request, name= "logout"),
+    path("https://listando.netlify.app/sucesso", views.homepage, name="sucesso")
 ]
