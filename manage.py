@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from pymongo import MongoClient
+
 
 
 
@@ -23,5 +23,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-client= MongoClient('mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority')
-print(client.list_database_names())
