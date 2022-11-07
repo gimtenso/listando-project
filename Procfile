@@ -1,1 +1,1 @@
-web gunicorn listando-project.wsgi:application 
+web gunicorn listando.wsgi:application 
