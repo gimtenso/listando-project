@@ -4,13 +4,13 @@ from django.contrib import admin
 from django.urls import path, include  #add include
 
 
-app_name = "main"   
+app_name = "https://listando.herokuapp.com/"   
 
 
 urlpatterns = [
-    path("https://listando.herokuapp.com/", views.homepage, name="homepage"),
-    path("https://listando.herokuapp.com/register", views.register_request, name="register"),
-    path("https://listando.herokuapp.com/login", views.login_request, name="login"),
-    path("https://listando.herokuapp.com/logout", views.logout_request, name= "logout"),
-    path("https://listando.herokuapp.com/sucesso", views.homepage, name="sucesso")
+    path("", views.homepage, name="homepage"),
+    path("register", views.register_request, name="register"),
+    path("login", views.login_request, name="login"),
+    path("logout", views.logout_request, name= "logout"),
+    path("sucesso", views.homepage, name="sucesso")
 ]
