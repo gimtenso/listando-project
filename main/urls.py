@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import path, include  #add include
 
 
-app_name = "https://listando.herokuapp.com/"   
+app_name = "main"   
 
 
 urlpatterns = [
