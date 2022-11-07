@@ -1,1 +1,1 @@
-python-3.8.10https://github.com/gimtenso/listando-project
+python-3.8.10
