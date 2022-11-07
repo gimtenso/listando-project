@@ -1,1 +1,1 @@
-web:gunicorn listando.wasgi --log-file
+web:gunicorn listando.wasgi --log-file -
