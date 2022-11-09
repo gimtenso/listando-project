@@ -134,4 +134,4 @@ django_heroku.settings(locals())
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
-MEDIA_URL = '/main/templates/main/img/'
+MEDIA_URL = '/img/'
