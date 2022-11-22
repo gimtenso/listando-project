@@ -90,12 +90,14 @@ WSGI_APPLICATION = 'listando.wsgi.application'
 #}
 #}
 
-DATABASES = {
-        'default': {
-                'ENGINE': 'djongo',
-                'NAME': 'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority',
-        }
+MONGODB_DATABASES = {
+    "default": {
+        "name": 'workshoptdc',
+        "host": 'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority'
+    }
 }
+
+INSTALLED_APPS += ["django_mongoengine"]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
