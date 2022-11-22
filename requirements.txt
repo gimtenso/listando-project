@@ -8,3 +8,6 @@ pymongo==4.3.2
 django-heroku==0.3.1
 django-crispy-forms==1.14.0
 djongo==1.3.6
+django-nonrel-enuff==0.4
+django-mongodb-engine==0.6.0
+djangotoolbox==1.8.0
