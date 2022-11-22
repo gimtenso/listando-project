@@ -1,10 +1,10 @@
-#from django.db import models
+from django.db import models
 
-# Create your models here.
+from djangotoolbox.fields import ListField
 
-#from mongoengine import *
-#connect('mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority')
-#class User(Document):
-#   mail=EmailField()
-#   username = StringField()
-#   password=StringField(min_value=8, max-value=20)
+
+class Post(models.Model):
+    title = models.CharField()
+    text = models.TextField()
+    tags = ListField()
+    comments = ListField()
