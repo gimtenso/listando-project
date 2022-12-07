@@ -3,7 +3,8 @@
 	<head>
 		<meta charset='utf-8'>
 		<title>Listando</title>
-		<Link rel="SHORTCUT ICON" href="img/icon.png"/>
+		{% load static %}
+		<Link rel="SHORTCUT ICON" img src="{% static 'icon.png' %}">
 
 
 		<style>
@@ -18,7 +19,8 @@
 
 		<header align="center">
 
-			<img src="img/capa.png">
+			{% load static %}
+			<img src="{% static 'capa.png' %}" width="400" height="141">	
 
 		</header>
 		
@@ -31,7 +33,7 @@
 			<p>
 				<label for="id_tema">Escolha uma matéria:</label>
 				<select name="tema" required id="id_tema"> ==$0
-					<option value selected> --------------------------- </option>
+					<option value selected> None </option>
 					<option value="Hist">História</option>
 					<option value="Port">Português</option>
 				</select>
