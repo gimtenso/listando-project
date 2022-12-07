@@ -1,4 +1,4 @@
-from django.shortcuts import  render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import NewUserForm
 from django.contrib.auth import login
 from django.contrib import messages
@@ -7,12 +7,30 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 
+from . import geraPDF
+import io
+
 
 def homepage(request):
 	return render(request=request, template_name='main/index.html')
 
-def sucesso(request):
-	return render(request=request, template_name='main/sucesso.html')
+
+def sucesso(request, filename=''):
+	if filename != '':
+		buffer = io.BytesIO()
+
+		assunto = request.POST.get("tema")
+		#quantidade = request.POST.get("quantidade")
+		geraPDF.gerarPDF(assunto)
+
+		response = HttpResponse(content_type='application/pdf')
+		response['Content-Disposition'] = 'attachment; filename=lista_personalizada.pdf'
+		response.write(buffer.getvalue())
+		buffer.close()
+
+		return response
+	else:
+		return render(request, 'main/sucesso.html')
 
 def register_request(request):
 	if request.method == "POST":
