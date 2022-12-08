@@ -1,1 +1,1 @@
-web gunicorn listando.wsgi:application 
+web: gunicorn listando.wsgi --log-file -
