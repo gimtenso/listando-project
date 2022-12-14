@@ -18,3 +18,7 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+class ListaDeQuestoes(forms.Form):
+	quant = forms.IntegerField()
+	tema = forms.CharField()

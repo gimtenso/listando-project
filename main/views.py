@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import NewUserForm
+from .forms import NewUserForm, ListaDeQuestoes
 from django.contrib.auth import login
 from django.contrib import messages
 from django.views.generic import TemplateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+from django.http import FileResponse
 
 from . import geraPDF
 import io
@@ -15,22 +16,33 @@ def homepage(request):
 	return render(request=request, template_name='main/index.html')
 
 
-def sucesso(request, filename=''):
-	if filename != '':
-		buffer = io.BytesIO()
-
-		assunto = request.POST.get("tema")
-		#quantidade = request.POST.get("quantidade")
-		geraPDF.gerarPDF(assunto)
-
-		response = HttpResponse(content_type='application/pdf')
-		response['Content-Disposition'] = 'attachment; filename=lista_personalizada.pdf'
-		response.write(buffer.getvalue())
-		buffer.close()
-
-		return response
+def sucesso(request):
+	if request.method == "GET":
+		form = ListaDeQuestoes()
+		context = {
+			'form': form
+		}
+		return render(request, 'main/sucesso.html', context=context)
 	else:
-		return render(request, 'main/sucesso.html')
+		form = ListaDeQuestoes(request.POST)
+		
+		if form.is_valid():
+			quant = form.cleaned_data.get('quant')
+			tema = form.cleaned_data.get('tema')
+
+			buffer = io.BytesIO()
+			geraPDF.gerarPDF(tema)
+			response = HttpResponse(content_type='application/pdf')
+			response['Content-Disposition'] = 'attachment; filename=lista_personalizada.pdf'
+			response.write(buffer.getvalue())
+			buffer.close()
+    		
+			form = ListaDeQuestoes()
+		
+		context = {
+			'form': form
+		}
+		return response
 
 def register_request(request):
 	if request.method == "POST":

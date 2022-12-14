@@ -28,20 +28,12 @@
 			<a class="nav-link" href="/logout">Logout</a>
 			<p></p>
 			<p></p>
-			<p>
-				<label for="id_tema">Escolha uma matéria:</label>
-				<select name="tema" required id="id_tema"> ==$0
-					<option value selected> --------------------------- </option>
-					<option value="historia">História</option>
-					<option value="Port">Português</option>
-				</select>
-			</p>
-			<p>
-				<label for="id_tema">Quantidade de questões da lista:</label>
-				<input type="int" name="quantidade" required id="id_tema">
-			</p>
-
-			<a href="/main/lista_personalizada.pdf" download>Gerar Lista</a>
+			
+				<form method="POST">
+					{% csrf_token %}
+					{{ form.as_p}}
+					<input type="submit"  value="Gerar Lista">
+				</form>
 			
 		</div>
 

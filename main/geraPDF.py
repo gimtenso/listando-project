@@ -4,12 +4,11 @@ from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import cm
-from pymongo import MongoClient
 
 
 def buscar_questoes(assunto):
     client = pymongo.MongoClient(
-    "mongodb://user:user@ac-zvbacnb-shard-00-00.n4s7ayo.mongodb.net:27017,ac-zvbacnb-shard-00-01.n4s7ayo.mongodb.net:27017,ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority")
+        "mongodb://user:user@ac-zvbacnb-shard-00-00.n4s7ayo.mongodb.net:27017,ac-zvbacnb-shard-00-01.n4s7ayo.mongodb.net:27017,ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority")
     db = client.get_database('EngSoft-Projeto')
     db_questoes = db.questões
 
@@ -37,5 +36,3 @@ def gerarPDF(assunto):
         itens.append(Paragraph(objeto["resposta"]))
 
     pdf.build(itens)
-
-
