@@ -31,7 +31,7 @@ def sucesso(request):
 			tema = form.cleaned_data.get('tema')
 
 			buffer = io.BytesIO()
-			geraPDF.gerarPDF(tema)
+			geraPDF.gerarPDF(tema,quant)
 			response = HttpResponse(content_type='application/pdf')
 			response['Content-Disposition'] = 'attachment; filename=lista_personalizada.pdf'
 			response.write(buffer.getvalue())
