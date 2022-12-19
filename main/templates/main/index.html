@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <Link rel="SHORTCUT ICON" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpt.wikipedia.org%2Fwiki%2FUniversidade_Federal_de_S%25C3%25A3o_Paulo&psig=AOvVaw0bRARXm2j4hJyZv0-VbKtY&ust=1668108907513000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCNDmgYvsofsCFQAAAAAdAAAAABAD"/>
+      <style>
+      body {
+          background-color: #FFE184;
+      }
+    </style>
+      <title>Listando</title>
+  </head>
+
+  <body>
+
+    <div align="center">
+      <header>
+        {% load static %}
+        <img src="{% static 'capa.png' %}" width="450" height="159">
+
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          <div class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </div>
+          {% else %}
+          <div><a href="register">Registre-se</a></div>
+          <div class="nav-item">
+            <a class="nav-link" href="/login">Entrar</a>
+          </div>
+
+          {% endif %}
+        </ul>
+      </nav> 
+
+    </div>
+  </body>
+
+</html>
