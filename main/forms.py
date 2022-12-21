@@ -22,4 +22,7 @@ class NewUserForm(UserCreationForm):
 
 class ListaDeQuestoes(forms.Form):
     quant = forms.IntegerField()
-    tema = forms.CharField()
+    tema = forms.ChoiceField(choices=(
+        ("historia", "História"),
+        ("matematica", "Matemática"),
+    ))

@@ -3,6 +3,7 @@ from .forms import NewUserForm, ListaDeQuestoes
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+from django.http.response import HttpResponse
 from . import geraPDF
 import io
 
