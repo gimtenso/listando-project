@@ -25,10 +25,10 @@ def buscar_questoes(assunto, quantidade):
     return lista_questoes
 
 
-def gerarPDF(assunto, quantidade):
+def gerarPDF(assunto, quantidade, buffer):
     questoes = buscar_questoes(assunto, quantidade)
 
-    pdf = SimpleDocTemplate("lista_personalizada.pdf", pagesize=A4,
+    pdf = SimpleDocTemplate(buffer, pagesize=A4,
                             rightMargin=2*cm, leftMargin=2*cm,
                             topMargin=2*cm, bottomMargin=2*cm)
 

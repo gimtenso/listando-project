@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import sys
-import django_heroku
-import dj_database_url
 import djongo
 
 
@@ -80,26 +78,22 @@ WSGI_APPLICATION = 'listando.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #       'ENGINE': 'django.db.backends.sqlite3',
- #      'NAME': 'workshoptdc',
-  #     "CLIENT": {
-   #         'host':'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority',
-    #   }
-#}
-#}
+#      'NAME': 'workshoptdc',
+#     "CLIENT": {
+#         'host':'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority',
+#   }
+# }
+# }
 
 DATABASES = {
-   'default': {
-        'ENGINE': 'djongo',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'workshoptdc',
-        "CLIENT": {
-          'host':'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority',
-   }
+    }
 }
-}
-
 
 
 # Password validation
@@ -137,10 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 
-STATIC_URL = '/static/'
+STATIC_URL = 'main/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-django_heroku.settings(locals())
+STATICFILES_DIRS = ('main/static/',)  # (os.path.join(BASE_DIR, 'static'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
