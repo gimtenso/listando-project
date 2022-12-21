@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from .forms import NewUserForm, ListaDeQuestoes
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
