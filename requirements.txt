@@ -15,4 +15,5 @@ pytz==2022.6
 mongoengine==0.24.2
 dnspython==2.2.1
 PyPDF2==3.0.1
+reportlab==3.6.12
 
