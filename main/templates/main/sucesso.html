@@ -1,52 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset='utf-8'>
-		<title>Listando</title>
-		{% load static %}
-		<Link rel="SHORTCUT ICON" img src="{% static 'icon.png' %}">
+  <head>
+    <meta charset="utf-8" />
+    <title>Listando</title>
+    {% load static %}
+    <link rel="SHORTCUT ICON" img src="{% static 'icon.png' %}" />
 
+    <style>
+      body {
+        background-color: #ffe184;
+      }
+    </style>
+  </head>
 
-		<style>
-			body {
-    			background-color: #FFE184;
-			}
-		</style>
+  <body>
+    <header align="center">
+      {% load static %}
+      <img src="{% static 'capa.png' %}" width="400" height="141" />
+    </header>
 
-	</head>
-
-	<body>
-
-		<header align="center">
-
-			{% load static %}
-			<img src="{% static 'capa.png' %}" width="400" height="141">	
-
-		</header>
-		
-		<!--Register--> 
-		<div align="center">
-			<!--<p> <a href="/profile">Meu Perfil</a> </p>-->
-			<a class="nav-link" href="/logout">Logout</a>
-			<p></p>
-			<p></p>
-			<p>
-				<label for="id_tema">Escolha uma matéria:</label>
-				<select name="tema" required id="id_tema"> ==$0
-					<option value selected> None </option>
-					<option value="Hist">História</option>
-					<option value="Port">Português</option>
-				</select>
-			</p>
-			<p>
-				<label for="id_tema">Quantidade de questões da lista:</label>
-				<input type="int" name="quantidade" required id="id_tema">
-			</p>
-
-			<button type="submit">Gerar lista</button>
-			
-		</div>
-
-	</body>
-
+    <!--Register-->
+    <div align="center">
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p}}
+        <input type="submit" value="Gerar Lista" />
+      </form>
+    </div>
+  </body>
 </html>
