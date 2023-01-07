@@ -24,5 +24,6 @@ class ListaDeQuestoes(forms.Form):
     quant = forms.IntegerField()
     tema = forms.ChoiceField(choices=(
         ("historia", "História"),
+        ("sociologia", "Sociologia"),
         ("matematica", "Matemática"),
     ))

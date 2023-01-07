@@ -34,14 +34,23 @@ def gerarPDF(assunto, quantidade, buffer):
 
     itens = []
 
-    itens.append(Paragraph('LISTA DE EXERCÍCIOS PERSONALIZADA'))
-
-    for objeto in questoes:
-        itens.append(Paragraph(objeto["questão"].replace("\n", "<br />")))
+    itens.append(Paragraph('LISTA DE EXERCÍCIOS PERSONALIZADA<br/><br/>'))
+    gabarito = []
+    for n, objeto in enumerate(questoes):
+        questao = objeto["questão"].lstrip("\n0123456789.- ")
+        itens.append(Paragraph(f'\nQUESTÃO {n+1}\n\n{questao}\n'.replace("\n", "<br />")))
+        gabarito.append(Paragraph(f"\n{len(gabarito)+1}-{objeto['resposta']}".replace("\n", "<br />")))
 
     itens.append(Paragraph('GABARITO'))
 
-    for objeto in questoes:
-        itens.append(Paragraph(objeto["resposta"]))
+    itens += gabarito
 
     pdf.build(itens)
+
+
+if __name__ == "__main__":
+    client = pymongo.MongoClient(
+        "mongodb://user:user@ac-zvbacnb-shard-00-00.n4s7ayo.mongodb.net:27017,ac-zvbacnb-shard-00-01.n4s7ayo.mongodb.net:27017,ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority")
+    db = client.get_database('EngSoft-Projeto')
+    db_questoes = db.questões
+    print("a")
