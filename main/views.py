@@ -18,12 +18,13 @@ def sucesso(request):
     choices = geraPDF.get_temas()
     if request.method == "GET":
         form = ListaDeQuestoes(choices=choices)
+        stats = Stats.objects.get_or_create(user=request.user.username)
         context = {
             'form': form,
             'username': request.user.username,
-            'n': Stats.objects.get(user=request.user.username).listas_completas,
-            'q': Stats.objects.get(user=request.user.username).questoes_completas,
-            'lvl': floor(Stats.objects.get(user=request.user.username).questoes_completas/100)
+            'n': stats.listas_completas,
+            'q': stats.questoes_completas,
+            'lvl': floor(stats.questoes_completas/100)
         }
         return render(request, 'main/sucesso.html', context=context)
     else:
@@ -39,7 +40,7 @@ def sucesso(request):
             response.write(buffer.getvalue())
             buffer.close()
 
-            stats = Stats.objects.get(user=request.user.username)
+            stats = Stats.objects.get_or_create(user=request.user.username)
             stats.listas_completas += 1
             stats.questoes_completas += sum(list(data.values()))
             stats.save()
