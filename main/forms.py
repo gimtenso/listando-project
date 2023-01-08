@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
-
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Layout, Field
 # Create your forms here.
+
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -21,8 +22,9 @@ class NewUserForm(UserCreationForm):
 
 
 class ListaDeQuestoes(forms.Form):
-    quant = forms.IntegerField()
-    tema = forms.ChoiceField(choices=(
-        ("historia", "História"),
-        ("matematica", "Matemática"),
-    ))
+    def __init__(self, choices=None, *args, **kwargs):
+        super(ListaDeQuestoes, self).__init__(*args, **kwargs)
+        if choices:
+            for c in choices:
+                self.fields[c] = forms.IntegerField(
+                    initial=0, label=c)

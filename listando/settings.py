@@ -89,13 +89,13 @@ WSGI_APPLICATION = 'listando.wsgi.application'
 # }
 
 DATABASES = {
-   'default': {
+    'default': {
         'ENGINE': 'djongo',
         'NAME': 'workshoptdc',
         "CLIENT": {
-          'host':'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority',
-   }
-}
+            'host': 'mongodb://user:user@ac-zvbacnb-shard-00-02.n4s7ayo.mongodb.net:27017/?ssl=true&replicaSet=atlas-89iqf1-shard-0&authSource=admin&retryWrites=true&w=majority',
+        }
+    }
 }
 
 
