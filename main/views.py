@@ -18,7 +18,8 @@ def sucesso(request):
     choices = geraPDF.get_temas()
     if request.method == "GET":
         form = ListaDeQuestoes(choices=choices)
-        stats = Stats.objects.get_or_create(user=request.user.username)
+        stats, created = Stats.objects.get_or_create(
+            user=request.user.username)
         context = {
             'form': form,
             'username': request.user.username,
@@ -40,7 +41,8 @@ def sucesso(request):
             response.write(buffer.getvalue())
             buffer.close()
 
-            stats = Stats.objects.get_or_create(user=request.user.username)
+            stats, created = Stats.objects.get_or_create(
+                user=request.user.username)
             stats.listas_completas += 1
             stats.questoes_completas += sum(list(data.values()))
             stats.save()
