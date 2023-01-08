@@ -1,8 +1,6 @@
-import PyPDF2
 import pymongo
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import cm
 
 
