@@ -26,7 +26,7 @@
         Você completou {{n|safe}} listas, totalizando {{q|safe}} questões!
       </div>
       <form method="POST">
-        {% csrf_token %} {{ form.as_p}}
+        {% csrf_token %} {{ form.as_p }}
         <input type="submit" value="Gerar Lista" />
       </form>
     </div>

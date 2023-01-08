@@ -15,8 +15,9 @@ def homepage(request):
 
 
 def sucesso(request):
+    choices = geraPDF.get_temas()
     if request.method == "GET":
-        form = ListaDeQuestoes()
+        form = ListaDeQuestoes(choices=choices)
         context = {
             'form': form,
             'username': request.user.username,
@@ -26,25 +27,22 @@ def sucesso(request):
         }
         return render(request, 'main/sucesso.html', context=context)
     else:
-        form = ListaDeQuestoes(request.POST)
+        form = ListaDeQuestoes(data=request.POST, choices=choices)
 
         if form.is_valid():
-            quant = form.cleaned_data.get('quant')
-            tema = form.cleaned_data.get('tema')
+            data = {tema: form.cleaned_data.get(tema) for tema in choices}
 
             buffer = io.BytesIO()
-            geraPDF.gerarPDF(tema, quant, buffer)
+            geraPDF.gerarPDF(data, buffer)
             response = HttpResponse(content_type='application/pdf')
             response['Content-Disposition'] = 'attachment; filename=lista_personalizada.pdf'
             response.write(buffer.getvalue())
             buffer.close()
 
-            form = ListaDeQuestoes()
-
-        stats = Stats.objects.get(user=request.user.username)
-        stats.listas_completas += 1
-        stats.questoes_completas += quant
-        stats.save()
+            stats = Stats.objects.get(user=request.user.username)
+            stats.listas_completas += 1
+            stats.questoes_completas += sum(list(data.values()))
+            stats.save()
 
         return response
 
