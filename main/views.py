@@ -11,21 +11,24 @@ from .models import Stats
 
 
 def homepage(request):
-    return render(request=request, template_name='main/index.html')
+    stats, created = Stats.objects.get_or_create(
+        user=request.user.username)
+    context = {
+        'username': request.user.username,
+        'n': stats.listas_completas,
+        'q': stats.questoes_completas,
+        'lvl': floor(stats.questoes_completas/100)
+    }
+    return render(request=request, template_name='main/index.html', context=context)
 
 
 def sucesso(request):
     choices = geraPDF.get_temas()
     if request.method == "GET":
         form = ListaDeQuestoes(choices=choices)
-        stats, created = Stats.objects.get_or_create(
-            user=request.user.username)
+
         context = {
             'form': form,
-            'username': request.user.username,
-            'n': stats.listas_completas,
-            'q': stats.questoes_completas,
-            'lvl': floor(stats.questoes_completas/100)
         }
         return render(request, 'main/sucesso.html', context=context)
     else:
@@ -47,7 +50,14 @@ def sucesso(request):
             stats.questoes_completas += sum(list(data.values()))
             stats.save()
 
-        return response
+            return response
+        else:
+            form = ListaDeQuestoes(choices=choices)
+
+            context = {
+                'form': form,
+            }
+            return render(request, 'main/sucesso.html', context=context)
 
 
 def register_request(request):

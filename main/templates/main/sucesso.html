@@ -10,24 +10,49 @@
       body {
         background-color: #ffe184;
       }
+      .capa {
+        margin: auto;
+        padding: 10px;
+        width: 30%;
+      }
+      .texto {
+        text-align: center;
+      }
+      .submit-button {
+        margin: auto;
+        width: 50%;
+        border: 3px solid green;
+        padding: 10px;
+      }
+      .grande {
+        font-size: 30px;
+        font-weight: bold;
+      }
     </style>
   </head>
 
   <body>
-    <header align="center">
-      {% load static %}
-      <img src="{% static 'capa.png' %}" width="400" height="141" />
-    </header>
-
+    <div class="capa">
+      <header align="center">
+        {% load static %}
+        <img src="{% static 'capa.png' %}" width="400" height="141" />
+      </header>
+    </div>
+    <div class="texto">
+      <a href="{% url 'main:homepage' %}"> Página inicial </a>
+      <br></br>
+    </div>
     <!--Register-->
+    <div class="texto grande">Monte aqui sua lista!</div>
+    <div class="texto">
+      Informe a quantidade de questões que você deseja de cada assunto:
+    </div>
+    <br></br>
     <div align="center">
-      <div>Bem vindo, {{username|safe}} - Nível {{lvl|safe}}.</div>
-      <div>
-        Você completou {{n|safe}} listas, totalizando {{q|safe}} questões!
-      </div>
       <form method="POST">
         {% csrf_token %} {{ form.as_p }}
-        <input type="submit" value="Gerar Lista" />
+        <br></br>
+        <input type="submit" value="Gerar Lista" class="submit-button" />
       </form>
     </div>
   </body>

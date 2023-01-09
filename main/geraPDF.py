@@ -35,7 +35,7 @@ def get_temas():
         if q['assunto'] not in temas:
             temas.append(q['assunto'])
 
-    return temas
+    return sorted(temas)
 
 
 def gerarPDF(data, buffer):
