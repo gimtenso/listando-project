@@ -29,13 +29,18 @@ def get_temas():
     db = client.get_database('EngSoft-Projeto')
     db_questoes = db.questões
 
-    temas = []
+    temas = {}
+
     lista_questoes = db_questoes.find()
     for q in lista_questoes:
-        if q['assunto'] not in temas:
-            temas.append(q['assunto'])
+        if q['assunto'] not in temas.keys():
+            temas[q['assunto']] = 1
+        else:
+            temas[q['assunto']] += 1
 
-    return sorted(temas)
+    ret = [(k, v) for k, v in temas.items()]
+
+    return sorted(ret)
 
 
 def gerarPDF(data, buffer):

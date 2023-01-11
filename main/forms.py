@@ -25,6 +25,6 @@ class ListaDeQuestoes(forms.Form):
     def __init__(self, choices=None, *args, **kwargs):
         super(ListaDeQuestoes, self).__init__(*args, **kwargs)
         if choices:
-            for c in choices:
-                self.fields[c] = forms.IntegerField(
-                    initial=0, label=c)
+            for tema, max_value in choices:
+                self.fields[tema] = forms.IntegerField(
+                    initial=0, label=tema, min_value=0, max_value=max_value)
