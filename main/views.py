@@ -35,7 +35,8 @@ def sucesso(request):
         form = ListaDeQuestoes(data=request.POST, choices=choices)
 
         if form.is_valid():
-            data = {tema: form.cleaned_data.get(tema) for tema in choices}
+            data = {tema: form.cleaned_data.get(
+                tema) for tema, maxno in choices}
 
             buffer = io.BytesIO()
             geraPDF.gerarPDF(data, buffer)
