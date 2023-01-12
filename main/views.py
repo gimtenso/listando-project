@@ -4,6 +4,7 @@ from .forms import NewUserForm, ListaDeQuestoes
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from . import geraPDF
 import io
@@ -34,6 +35,7 @@ def homepage(request):
     return render(request=request, template_name='main/index.html', context=context)
 
 
+@login_required
 def sucesso(request):
     choices = geraPDF.get_temas()
     if request.method == "GET":
@@ -107,6 +109,7 @@ def login_request(request):
     return render(request=request, template_name="main/login.html", context={"login_form": form})
 
 
+@login_required
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
