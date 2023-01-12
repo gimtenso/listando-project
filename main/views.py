@@ -11,6 +11,8 @@ from .models import Stats
 
 
 def homepage(request):
+    if request.user.is_anonymous:
+        return render(request=request, template_name='main/index.html')
     stats, created = Stats.objects.get_or_create(
         user=request.user.username)
 
