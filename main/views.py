@@ -13,11 +13,21 @@ from .models import Stats
 def homepage(request):
     stats, created = Stats.objects.get_or_create(
         user=request.user.username)
+
+    emblema = None
+    if stats.questoes_completas > 1:
+        emblema = 'bronze'
+    if stats.questoes_completas > 3:
+        emblema = 'prata'
+    if stats.questoes_completas > 6:
+        emblema = 'ouro'
+
     context = {
         'username': request.user.username,
         'n': stats.listas_completas,
         'q': stats.questoes_completas,
-        'lvl': floor(stats.questoes_completas/100)
+        'lvl': floor(stats.questoes_completas/100),
+        'emblema': emblema
     }
     return render(request=request, template_name='main/index.html', context=context)
 

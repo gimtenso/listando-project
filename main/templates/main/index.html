@@ -32,6 +32,16 @@
               Você completou {{n|safe}} listas, totalizando {{q|safe}} questões!
             </div>
             <br></br>
+            {% if emblema != None %}
+              {% with emblema|add:'.png' as emblema_static %}
+                <img src="{% static emblema_static %}" width="169" height="295" />
+              {% endwith %}
+              <br></br>
+              <div>
+                Você conquistou o emblema {{emblema | safe}}!
+              </div>
+              <br></br>
+            {% endif %}
             <div class="nav-item">
               <a class="nav-link" href="{% url 'main:sucesso' %}"
                 >Gerar listas</a

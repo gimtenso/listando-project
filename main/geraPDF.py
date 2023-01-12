@@ -53,17 +53,26 @@ def gerarPDF(data, buffer):
     itens.append(Paragraph('LISTA DE EXERCÍCIOS PERSONALIZADA<br/><br/>'))
 
     gabarito = []
+    q_no = 1
     for assunto, quantidade in data.items():
+        if quantidade == 0:
+            continue
         questoes = buscar_questoes(assunto, quantidade)
+        itens.append(Paragraph(assunto))
+        gabarito.append(Paragraph(assunto))
 
         for objeto in questoes:
             questao = objeto["questão"].lstrip("\n0123456789.- ")
             itens.append(
-                Paragraph(f'\nQUESTÃO {len(gabarito)+1}\n\n{questao}\n'.replace("\n", "<br />")))
+                Paragraph(f'\nQUESTÃO {q_no}\n\n{questao}\n'.replace("\n", "<br />")))
             gabarito.append(
-                Paragraph(f"\n{len(gabarito)+1}-{objeto['resposta']}".replace("\n", "<br />")))
+                Paragraph(f"\n{q_no}-{objeto['resposta']}".replace("\n", "<br />")))
+            q_no += 1
 
-    itens.append(Paragraph('GABARITO'))
+        itens.append(Paragraph("_"*40 + "<br />"*2))
+        gabarito.append(Paragraph("_"*40 + "<br />"*2))
+
+    itens.append(Paragraph('GABARITO<br /><br />'))
 
     itens += gabarito
 
